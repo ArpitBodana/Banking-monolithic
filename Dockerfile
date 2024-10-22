@@ -1,10 +1,12 @@
-FROM maven:3.9.9-eclipse-temurin-11 AS build
-COPY . .
-RUN mvn clean package -DskipTests
-
-FROM eclipse-temurin:17-alpine
-COPY --from=build /target/*.jar user-service.jar
+FROM openjdk:17-jdk-slim AS build
+WORKDIR /app
+COPY pom.xml ./
+COPY src ./src
+COPY mvnw ./
+COPY .mvn ./.mvn
+RUN chmod +x ./mvnw
+RUN ./mvnw clean package -DskipTests
+FROM openjdk:17-jdk-slim
+COPY --from=build /app/target/*.jar app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","user-service.jar"]
-
-

@@ -9,4 +9,4 @@ RUN ./mvnw clean package -DskipTests
 FROM openjdk:22-rc-oraclelinux9
 COPY --from=build /app/target/*.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
-EXPOSE 8180
+EXPOSE 8000

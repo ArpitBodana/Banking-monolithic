@@ -6,6 +6,7 @@ import com.banking.user_service.Models.DepositOrDebit;
 import com.banking.user_service.Models.Transactions;
 import com.banking.user_service.Models.TransferDetails;
 import com.banking.user_service.Services.PaymentService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/payment")
+@Tag(name="Payment APIs",description = "CRUD Operations for Payment details")
 public class PaymentController {
     @Autowired
     PaymentService paymentService;

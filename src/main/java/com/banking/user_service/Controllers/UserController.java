@@ -3,6 +3,7 @@ package com.banking.user_service.Controllers;
 import com.banking.user_service.Models.User;
 import com.banking.user_service.Services.JwtService;
 import com.banking.user_service.Services.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("api/v1/user")
+@Tag(name="User APIs",description = "CRUD Operations for User")
 public class UserController {
     @Autowired
     private UserService service;

@@ -7,6 +7,7 @@ import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.tags.Tag;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Arrays;
@@ -15,15 +16,19 @@ import java.util.List;
 @Configuration
 public class SwaggerConfig {
 
+    @Bean
     public OpenAPI swaggerConfigs(){
         return new OpenAPI().info(
                 new Info()
                         .title("Banking App APIs")
                         .description("By Arpit Bodana")
         )
-                .servers(List.of(new Server()
+                .servers(List.of(
+                        new Server()
                 .url("https://banking-monolithic.onrender.com")
-                .description("Live on Render")))
+                .description("Live on Render"),new Server()
+                                .url("http://localhost:8000/")
+                                .description("Localhost")))
                 .tags(Arrays.asList(
                         new Tag().name("Account APIs"),
                         new Tag().name("User APIs"),

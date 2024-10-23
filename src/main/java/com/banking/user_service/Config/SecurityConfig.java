@@ -36,7 +36,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception {
         http.csrf(customizer -> customizer.disable())
                 .authorizeHttpRequests(request -> request
-                .requestMatchers("api/v1/user/register","api/v1/user/login","swagger-ui/index.html").permitAll()
+                .requestMatchers("api/v1/user/register","api/v1/user/login","/v3/api-docs/**", "/swagger-ui/**", "/v2/api-docs/**", "/swagger-resources/**").permitAll()
                 .anyRequest()
                 .authenticated())
                 .httpBasic(Customizer.withDefaults())
